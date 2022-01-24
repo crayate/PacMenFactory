@@ -58,10 +58,12 @@ function update() {
 function checkCollisions(item) {
   let pageWidth = window.innerWidth;
   let pageHeight = window.innerHeight;
-  if (item.position.x + item.newimg.width > pageWidth) {item.velocity.x *= -1}
-  if (item.position.x < 0) {item.velocity.x *= -1}
-  if (item.position.y + item.newimg.width > pageHeight) {item.velocity.y *= -1 }
-  if (item.position.y < 0) {item.velocity.y *= -1}
+  if (item.position.x + item.velocity.x + item.newimg.width > pageWidth ||
+  item.position.x + item.velocity.x < 0)
+    item.velocity.x = -item.velocity.x;
+  if (item.position.y + item.velocity.y + item.newimg.height > pageHeight ||
+  item.position.y + item.velocity.y < 0)
+    item.velocity.y = -item.velocity.y;
 }
 
 function makeOne() {
