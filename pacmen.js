@@ -43,10 +43,13 @@ function update() {
     checkCollisions(item);
     item.position.x += item.velocity.x;
     item.position.y += item.velocity.y;
-
+    if (item.velocity.x > 0) {
+      item.newimg.src = pacArray[0][Math.floor(Math.random()*2)];
+    } else {
+      item.newimg.src = pacArray[1][Math.floor(Math.random()*2)]
+    }
     item.newimg.style.left = item.position.x;
     item.newimg.style.top = item.position.y;
-    
   });
   setTimeout(update, 20);
 }
